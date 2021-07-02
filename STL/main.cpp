@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<array>
 #include<vector>
 //using namespace std;
@@ -15,13 +15,22 @@ using std::endl;
 template<typename T>void vector_properties(const std::vector<T>& vec)
 {
 	cout << "Size:    " << vec.size() << endl;
-	cout << "Capacity:" << vec.capacity() << endl;//Âìåñòèòåëüíîñòü - ñêîëüêî ýëåìåíòîâ ìîæåò âìåñòèòü â ñåáÿ âåêòîð 
+	cout << "Capacity:" << vec.capacity() << endl;//Ð’Ð¼ÐµÑÑ‚Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ - ÑÐºÐ¾Ð»ÑŒÐºÐ¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð¼Ð¾Ð¶ÐµÑ‚ Ð²Ð¼ÐµÑÑ‚Ð¸Ñ‚ÑŒ Ð² ÑÐµÐ±Ñ Ð²ÐµÐºÑ‚Ð¾Ñ€ 
 	cout << "MAXSize: " << vec.max_size() << endl;
 }
 
 template<typename T>void vector_print(const std::vector<T>& vec)
 {
 	for (typename std::vector<T>::const_iterator it = vec.begin(); it != vec.end(); it++)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
+}
+
+template<typename T>void vector_reverse_print(const std::vector<T>& vec)
+{
+	for (typename std::vector<T>::const_reverse_iterator it = vec.crbegin(); it != vec.crend() ; it++)
 	{
 		cout << *it << tab;
 	}
@@ -53,8 +62,8 @@ void main()
 		{
 			//try...catch...
 			//[] - index operator(subscript operator)
-			//cout << vec[i] << tab;//Oïåðàòîð [] ÍÅ áðîñàåò èñêëþ÷åíèå ïðè âûõîäå çà ïðåäåëû âåêòîðà.
-			cout << vec.at(i) << tab;//ìåòîä at() ðîñàåò èñêëþ÷åíèå(out of range exception) ïðè âûõîäå çà ïðåäåëû âåêòîðà.
+			//cout << vec[i] << tab;//OÐ¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ [] ÐÐ• Ð±Ñ€Ð¾ÑÐ°ÐµÑ‚ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¸ Ð²Ñ‹Ñ…Ð¾Ð´Ðµ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°.
+			cout << vec.at(i) << tab;//Ð¼ÐµÑ‚Ð¾Ð´ at() Ñ€Ð¾ÑÐ°ÐµÑ‚ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ(out of range exception) Ð¿Ñ€Ð¸ Ð²Ñ‹Ñ…Ð¾Ð´Ðµ Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‹ Ð²ÐµÐºÑ‚Ð¾Ñ€Ð°.
 		}
 		cout << endl;
 		//throw 123;
@@ -69,6 +78,19 @@ void main()
 	}
 #endif // EXCEPTIONS_IN_VECTOR
 
+	int index;
+	int value;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ: "; cin >> index;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: "; cin >> value;
+	
+	std::vector<int>::iterator position = vec.begin() + index;
+	vec.insert(position, value);
+
+	vector_print(vec);
+	vector_reverse_print(vec);
+
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ ÑƒÐ´Ð°Ð»ÑÐµÐ¼Ð¾Ð³Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ: "; cin >> index;
+	vec.erase(vec.begin() + index);
 	vector_print(vec);
 
 #endif // STL_VECTOR
