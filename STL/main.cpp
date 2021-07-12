@@ -108,7 +108,6 @@ void main()
 
 
 #endif // STL_VECTOR
-
 #ifdef STL_LIST
 	std::list<int> list = { 3, 5, 8, 13, 21 };
 	/*for (int i = 0; i < list.size(); i++)
